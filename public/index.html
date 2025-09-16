@@ -1,22 +1,53 @@
 <!DOCTYPE html>
-<!-- Use all the important tags, attributes, and forms while developing this blog site.
- -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simply Blogging</title>
+    <title>Sign up</title>
 </head>
 <body>
-    <!-- Create a website which has different categories of blogs which can be accessed using the navigation bar. -->
-    <div id="navbar"></div>
-    <!-- an authentication UI for the blog site so that once customers register, they can access the premium articles. -->
-    <!-- index.html
-    register.html
-    login.html
-    about.html
-    contact.html
-    blogs.html -->
-    <script src="navbar.js" defer></script>
+    <h2>Sign up</h2>
+    <div>
+        <form action="" method="post" id="signupForm">
+            <!-- <label for="firstName">First Name</label>
+            <input type="text" id="firstName" name="firstName" required><br><br>
+
+            <label for="lastName">Last Name</label>
+            <input type="text" id="lastName" name="lastName" required><br><br> -->
+           
+            <input type="email" id="email" placeholder="email" required><br><br>      
+            <input type="password" id="password" placeholder="password" required><br><br>
+            <button type="submit">Register</button><br><br>
+
+
+            <a href="Login.html">If you are an existing user, please log in here</a><br><br>
+        </form>
+
+       
+ <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+ <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+ <script src="/js/firebase-config.js"></script>
+
+ <script>
+    document.getElementById('signupForm').addEventListener('submit', function(e) {
+        e.preventDefault(); // Prevent form submission
+
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+
+        // Firebase Authentication: Create a new user
+        firebase.auth().createUserWithEmailAndPassword(email, password)
+            .then((userCredential) => {
+                alert('Registration successful! You can now log in.');
+                window.location.href = 'login.html'; 
+            })
+            .catch((error) => {
+                const errorMessage = error.message;
+                alert('Error: ' + errorMessage);
+            });
+    });
+ </script>
+
+
 </body>
-</html>     
+</html>
